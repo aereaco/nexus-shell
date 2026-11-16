@@ -1,0 +1,39 @@
+<head>
+  <title>Home</title>
+  <meta name="route" content="/">
+  <meta name="icon" content="material-symbols-light:home-outline">
+  <meta name="order" content="1">
+</head>
+
+<div class="max-w-5xl mx-auto w-full space-y-8 py-6" data-signal="{ counter: 1 }">
+  <div class="rounded-3xl bg-gradient-to-br from-base-200/90 via-base-100 to-base-200/50 p-8 md:p-10 border border-base-content/10 shadow-xl space-y-5">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary text-xs font-semibold uppercase tracking-wider">
+      <span class="inline-block size-2 rounded-full bg-primary animate-pulse"></span>
+      Nexus-Shell Starter Workspace
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black tracking-tight">
+      Desktop-Class Web Application Shell
+    </h1>
+    <p class="text-base text-base-content/75 max-w-2xl leading-relaxed">
+      Welcome to <strong>Nexus-Shell</strong> — the standalone multi-tab application workbench powered by <strong>Nexus-UX</strong>. Drop HTML pages into <code>site/_pages/</code> to automatically register routes, sidebar navigation, search indexing, and multi-tab workspaces.
+    </p>
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <button type="button" class="btn btn-primary btn-sm gap-2" data-on-click="if (typeof toggleTerminalHud === 'function') toggleTerminalHud()">
+        <iconify-icon icon="material-symbols-light:terminal" class="text-lg"></iconify-icon>
+        Toggle Terminal HUD
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm gap-2" data-on-click="chatbarOpen = !chatbarOpen">
+        <iconify-icon icon="material-symbols-light:smart-toy-outline" class="text-lg"></iconify-icon>
+        Toggle AI Chatbar
+      </button>
+      <button type="button" class="btn btn-accent btn-sm gap-2" data-on-click="notify('Workbench Ready', 'Declarative notification dispatched #' + (counter++), 'success')">
+        <iconify-icon icon="material-symbols-light:notifications-active-outline" class="text-lg"></iconify-icon>
+        Test Notification
+      </button>
+      <button type="button" class="btn btn-outline btn-sm gap-2" data-on-click="router.createPageTab('_components/tab-new.html')">
+        <iconify-icon icon="material-symbols-light:tab-group-outline" class="text-lg"></iconify-icon>
+        Open New Tab
+      </button>
+    </div>
+  </div>
+</div>

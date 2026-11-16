@@ -1,0 +1,11 @@
+[
+  {
+    "id": "home",
+    "route": "/",
+    "path": "/_pages/home.html",
+    "title": "Home",
+    "category": "General",
+    "keywords": [],
+    "content": "Home Nexus-Shell Starter Workspace Desktop-Class Web Application Shell Welcome to Nexus-Shell the standalone multi-tab application workbench powered by Nexus-UX . Drop HTML pages into site/_pages/ to automatically register routes sidebar navigation search indexing and multi-tab workspaces. Toggle Terminal HUD Toggle AI Chatbar Test Notification Open New Tab"
+  }
+]

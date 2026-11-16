@@ -1,0 +1,67 @@
+<!-- Composite Navbar Dropdown (Notifications, Mail, Cart, Profile) -->
+<div
+  class="dropdown-content bg-base-100/95 backdrop-blur-xl border border-base-content/10 rounded-2xl z-[100] mt-1 w-96 max-w-[calc(100vw-2rem)] h-[32rem] shadow-2xl flex overflow-hidden fixed top-14 end-4 transition-all duration-200"
+  data-signal_global="{
+    headerDropdownOpen: false,
+    headerDropdownTab: 'notifications',
+    notificationFilter: 'all',
+    notifications: [],
+    mailMessages: [
+      { id: 'm-1', from: 'System Bot', subject: 'Welcome to Aerea Dashboard', snippet: 'Explore your customized dashboard...', time: '10m ago', unread: true },
+      { id: 'm-2', from: 'Dev Team', subject: 'Nexus-UX v2.1 Released', snippet: 'Check out the new declarative updates...', time: '1h ago', unread: false }
+    ],
+    cartItems: [
+      { id: 'c-1', name: 'Cloud Tier 1 Subscription', price: 29.00, qty: 1 },
+      { id: 'c-2', name: 'Developer Add-on Pack', price: 15.00, qty: 2 }
+    ]
+  }"
+  data-show="headerDropdownOpen" data-on-click_outside="headerDropdownOpen = false"
+  data-on-keydown_escape_window="headerDropdownOpen = false">
+
+  <!-- Left Icon Rail -->
+  <ul
+    class="menu bg-base-200/60 p-2 gap-1.5 border-e border-base-content/10 shrink-0 flex flex-col items-center w-14">
+    <li>
+      <button type="button" class="btn btn-ghost btn-sm btn-circle"
+        data-class="{ 'btn-active bg-primary/20 text-primary': headerDropdownTab === 'profile' }"
+        data-on-click="headerDropdownTab = 'profile'" title="Profile">
+        <iconify-icon icon="material-symbols-light:person-outline" class="text-xl"></iconify-icon>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn btn-ghost btn-sm btn-circle relative"
+        data-class="{ 'btn-active bg-primary/20 text-primary': headerDropdownTab === 'notifications' }"
+        data-on-click="headerDropdownTab = 'notifications'" title="Notifications">
+        <iconify-icon icon="material-symbols-light:notifications-outline" class="text-xl"></iconify-icon>
+        <span data-show="(notifications || []).filter(n => !n.read).length > 0"
+          class="badge badge-xs badge-primary absolute top-1 end-1 size-2 p-0"></span>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn btn-ghost btn-sm btn-circle relative"
+        data-class="{ 'btn-active bg-primary/20 text-primary': headerDropdownTab === 'mail' }"
+        data-on-click="headerDropdownTab = 'mail'" title="Messages">
+        <iconify-icon icon="material-symbols-light:mail-outline" class="text-xl"></iconify-icon>
+        <span data-show="(mailMessages || []).filter(m => m.unread).length > 0"
+          class="badge badge-xs badge-info absolute top-1 end-1 size-2 p-0"></span>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn btn-ghost btn-sm btn-circle relative"
+        data-class="{ 'btn-active bg-primary/20 text-primary': headerDropdownTab === 'cart' }"
+        data-on-click="headerDropdownTab = 'cart'" title="Shopping Cart">
+        <iconify-icon icon="material-symbols-light:shopping-cart-outline" class="text-xl"></iconify-icon>
+        <span data-show="(cartItems || []).reduce((acc, i) => acc + i.qty, 0) > 0"
+          class="badge badge-xs badge-warning absolute top-1 end-1 size-2 p-0"></span>
+      </button>
+    </li>
+  </ul>
+
+  <!-- Right Panel (Modular Sub-Components) -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-base-100">
+    <layout-notifications class="contents" data-component="'_components/layout-notifications.html'"></layout-notifications>
+    <layout-mail class="contents" data-component="'_components/layout-mail.html'"></layout-mail>
+    <layout-cart class="contents" data-component="'_components/layout-cart.html'"></layout-cart>
+    <layout-profile class="contents" data-component="'_components/layout-profile.html'"></layout-profile>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<!-- 1. NOTIFICATIONS TAB -->
+<div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden" data-show="headerDropdownTab === 'notifications'">
+  <div class="p-3 border-b border-base-content/10 flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-2">
+      <span class="font-bold text-sm">Notifications</span>
+      <span data-show="(notifications || []).filter(n => !n.read).length > 0"
+        class="badge badge-primary badge-sm"
+        data-bind="(notifications || []).filter(n => !n.read).length + ' unread'"></span>
+    </div>
+    <div class="flex items-center gap-1">
+      <button type="button" class="btn btn-ghost btn-xs text-xs"
+        data-show="(notifications || []).filter(n => !n.read).length > 0"
+        data-on-click="notifications = (notifications || []).map(n => ({ ...n, read: true }))">
+        Mark all read
+      </button>
+      <button type="button" class="btn btn-ghost btn-xs text-xs text-error/80 hover:text-error"
+        data-show="(notifications || []).length > 0" data-on-click="notifications = []">
+        Clear
+      </button>
+    </div>
+  </div>
+  <div
+    class="px-3 py-1.5 border-b border-base-content/5 flex items-center gap-2 shrink-0 bg-base-200/30 text-xs">
+    <button type="button" class="btn btn-xs rounded-full"
+      data-class="{ 'btn-primary': notificationFilter === 'all', 'btn-ghost': notificationFilter !== 'all' }"
+      data-on-click="notificationFilter = 'all'">
+      All (<span data-bind="(notifications || []).length"></span>)
+    </button>
+    <button type="button" class="btn btn-xs rounded-full"
+      data-class="{ 'btn-primary': notificationFilter === 'unread', 'btn-ghost': notificationFilter !== 'unread' }"
+      data-on-click="notificationFilter = 'unread'">
+      Unread (<span data-bind="(notifications || []).filter(n => !n.read).length"></span>)
+    </button>
+  </div>
+  <div class="flex-1 overflow-y-auto p-2 space-y-1.5">
+    <div
+      data-show="(notifications || []).length === 0 || (notificationFilter === 'unread' && (notifications || []).filter(n => !n.read).length === 0)"
+      class="flex flex-col items-center justify-center h-48 text-base-content/40 text-sm gap-2">
+      <iconify-icon icon="material-symbols-light:notifications-off-outline" class="text-4xl"></iconify-icon>
+      <span>No notifications</span>
+    </div>
+    <template
+      data-for="item in (notificationFilter === 'unread' ? (notifications || []).filter(n => !n.read) : (notifications || []))">
+      <div
+        class="alert alert-soft p-2.5 rounded-xl flex items-start gap-2.5 relative group cursor-pointer transition-all"
+        data-class="{
+          'alert-error': item.type === 'error' || item.priority === 'urgent',
+          'alert-warning': item.type === 'warning' || item.priority === 'high',
+          'alert-success': item.type === 'success' || item.priority === 'normal',
+          'alert-info': item.type === 'info' || item.priority === 'low',
+          'opacity-60': item.read
+        }" data-on-click="item.read = true">
+        <iconify-icon
+          data-bind-icon="item.type === 'error' ? 'material-symbols-light:error-outline' : item.type === 'warning' ? 'material-symbols-light:warning-outline' : item.type === 'success' ? 'material-symbols-light:check-circle-outline' : 'material-symbols-light:info-outline'"
+          class="text-xl shrink-0 mt-0.5"></iconify-icon>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-1">
+            <span class="text-xs font-semibold truncate" data-bind="item.title || 'Notification'"></span>
+            <span class="text-[0.65rem] opacity-60 shrink-0" data-bind="item.time || 'Just now'"></span>
+          </div>
+          <p class="text-xs opacity-80 line-clamp-2 mt-0.5 leading-snug" data-bind="item.message"></p>
+        </div>
+        <button type="button"
+          class="btn btn-ghost btn-xs btn-circle opacity-0 group-hover:opacity-100 transition-opacity shrink-0 hover:bg-base-content/10"
+          title="Dismiss"
+          data-on-click_stop="notifications = (notifications || []).filter(n => n.id !== item.id)">
+          <iconify-icon icon="material-symbols-light:close" class="text-sm"></iconify-icon>
+        </button>
+      </div>
+    </template>
+  </div>
+</div>

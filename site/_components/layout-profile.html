@@ -1,0 +1,35 @@
+<!-- 4. PROFILE TAB -->
+<div class="flex-1 flex flex-col min-w-0 h-full overflow-y-auto p-3" data-show="headerDropdownTab === 'profile'">
+  <div class="flex items-center gap-3 p-2 bg-base-200/50 rounded-xl mb-3">
+    <div class="avatar online placeholder">
+      <div
+        class="w-11 rounded-full bg-base-200 text-base-content ring ring-primary ring-offset-base-100 ring-offset-2 flex items-center justify-center">
+        <iconify-icon icon="material-symbols-light:person" class="text-2xl"></iconify-icon>
+      </div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="font-bold text-sm truncate">Admin User</div>
+      <div class="text-xs opacity-60 truncate">admin@aerea.co</div>
+      <span class="badge badge-primary badge-xs mt-1">Administrator</span>
+    </div>
+  </div>
+  <ul class="menu menu-sm p-0 space-y-0.5 text-xs">
+    <li><a
+        data-on-click="notify('Profile', 'Signed in as Vernon (Administrator)', 'info'); headerDropdownOpen = false"><iconify-icon
+          icon="material-symbols-light:account-circle-outline" class="text-base"></iconify-icon>My Profile</a>
+    </li>
+    <li><a
+        data-on-click="notify('Account Settings', 'Workspace & appearance settings are available in the header controls.', 'info'); headerDropdownOpen = false"><iconify-icon
+          icon="material-symbols-light:settings-outline" class="text-base"></iconify-icon>Account Settings</a>
+    </li>
+    <li><a data-on-click="activeSidebarTab = 2; headerDropdownOpen = false"><iconify-icon
+          icon="material-symbols-light:star-outline" class="text-base"></iconify-icon>Bookmarks & Favorites</a>
+    </li>
+    <li><a><iconify-icon icon="material-symbols-light:keyboard-outline"
+          class="text-base"></iconify-icon>Keyboard Shortcuts</a></li>
+    <div class="divider my-1"></div>
+    <li><a class="text-error hover:bg-error/10"
+        data-on-click="notify('Signed out successfully', '', 'info'); headerDropdownOpen = false"><iconify-icon
+          icon="material-symbols-light:logout" class="text-base"></iconify-icon>Sign Out</a></li>
+  </ul>
+</div>
